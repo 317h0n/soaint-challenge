@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "cd34313a-b8b9-4e93-b359-ae7aede8c971",
+		"name": "SOAINT - TEST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "echocano",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Obtener todos los productos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJzdWIiOiJlY2hvY2FubyIsImlhdCI6MTYxMTE4NTg4MiwiZXhwIjoxNjExMTk5ODgyfQ.UK_CVOZybbkCOCZz0LLUabT64XurhZkO8eSeLoF6MWNmuUJsW73BwVCov8AMHHhX2C-OgK309i9p--9BxWARLA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJzdWIiOiJlY2hvY2FubyIsImlhdCI6MTYxMTE4NTg4MiwiZXhwIjoxNjExMTk5ODgyfQ.UK_CVOZybbkCOCZz0LLUabT64XurhZkO8eSeLoF6MWNmuUJsW73BwVCov8AMHHhX2C-OgK309i9p--9BxWARLA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						},
+						"description": "Obtiene un producto por el ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Crea un producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJzdWIiOiJlY2hvY2FubyIsImlhdCI6MTYxMTE4NTg4MiwiZXhwIjoxNjExMTk5ODgyfQ.UK_CVOZybbkCOCZz0LLUabT64XurhZkO8eSeLoF6MWNmuUJsW73BwVCov8AMHHhX2C-OgK309i9p--9BxWARLA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Galleta\",\n    \"price\": 1.20\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/productos",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualiza un producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJzdWIiOiJlY2hvY2FubyIsImlhdCI6MTYxMTE4NTg4MiwiZXhwIjoxNjExMTk5ODgyfQ.UK_CVOZybbkCOCZz0LLUabT64XurhZkO8eSeLoF6MWNmuUJsW73BwVCov8AMHHhX2C-OgK309i9p--9BxWARLA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Galleta de Soda\",\n    \"price\": 1.5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/productos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						},
+						"description": "Actualiza todos sus atributos"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualiza parcialmente un producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJzdWIiOiJlY2hvY2FubyIsImlhdCI6MTYxMTE4NTg4MiwiZXhwIjoxNjExMTk5ODgyfQ.UK_CVOZybbkCOCZz0LLUabT64XurhZkO8eSeLoF6MWNmuUJsW73BwVCov8AMHHhX2C-OgK309i9p--9BxWARLA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"price\": 1.00\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/productos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						},
+						"description": "Utilizado para actualizar algunos atributos del producto"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJzdWIiOiJlY2hvY2FubyIsImlhdCI6MTYxMTE4NTg4MiwiZXhwIjoxNjExMTk5ODgyfQ.UK_CVOZybbkCOCZz0LLUabT64XurhZkO8eSeLoF6MWNmuUJsW73BwVCov8AMHHhX2C-OgK309i9p--9BxWARLA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						},
+						"description": "Elimina un producto por su ID"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
