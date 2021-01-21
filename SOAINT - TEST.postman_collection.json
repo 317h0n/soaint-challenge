@@ -329,6 +329,109 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Ventas",
+			"item": [
+				{
+					"name": "Obtener todas las ventas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJzdWIiOiJlY2hvY2FubyIsImlhdCI6MTYxMTE4ODQzNSwiZXhwIjoxNjExMjAyNDM1fQ.cObfzTeE00mQJuOfOmRzKTYwMlnZDOjl9bZNFbpbxcUrdC0AGkxflqYHkW6c5hrZdV-ZqDuzQBojWC7R1anoEA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/ventas",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"ventas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener una venta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJzdWIiOiJlY2hvY2FubyIsImlhdCI6MTYxMTE4ODQzNSwiZXhwIjoxNjExMjAyNDM1fQ.cObfzTeE00mQJuOfOmRzKTYwMlnZDOjl9bZNFbpbxcUrdC0AGkxflqYHkW6c5hrZdV-ZqDuzQBojWC7R1anoEA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/ventas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"ventas",
+								"1"
+							]
+						},
+						"description": "Obtener una venta por ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear una venta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJzdWIiOiJlY2hvY2FubyIsImlhdCI6MTYxMTE4ODQzNSwiZXhwIjoxNjExMjAyNDM1fQ.cObfzTeE00mQJuOfOmRzKTYwMlnZDOjl9bZNFbpbxcUrdC0AGkxflqYHkW6c5hrZdV-ZqDuzQBojWC7R1anoEA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cliente\": {\n        \"id\": 1\n    },\n    \"items\": [\n        {\n            \"cantidad\": 2,\n            \"producto\": {\n                \"id\": 1                    \n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/ventas",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"ventas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
