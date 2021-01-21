@@ -33,6 +33,18 @@
             </Policies>
             <DefaultRolloverStrategy max="10"/>
         </RollingFile>
+        <!-- Rolling File Appender -->
+        <RollingFile name="cliente" fileName="logs/soaint-cliente.log"
+                     filePattern="logs/soaint-cliente-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout>
+                <Pattern>${LOG_PATTERN}</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" />
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
     </Appenders>
     <Loggers>
         <Logger name="com.soaint.shoppingcar.auth.filter.JWTAuthenticationFilter" additivity="false">
@@ -41,6 +53,10 @@
         </Logger>
         <Logger name="com.soaint.shoppingcar.controllers.ProductoController" additivity="false">
             <AppenderRef ref="producto" />
+            <AppenderRef ref="ConsoleAppender" />
+        </Logger>
+        <Logger name="com.soaint.shoppingcar.controllers.ClienteController" additivity="false">
+            <AppenderRef ref="cliente" />
             <AppenderRef ref="ConsoleAppender" />
         </Logger>
 

@@ -257,6 +257,78 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Obtener todos los clientes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJzdWIiOiJlY2hvY2FubyIsImlhdCI6MTYxMTE4ODQzNSwiZXhwIjoxNjExMjAyNDM1fQ.cObfzTeE00mQJuOfOmRzKTYwMlnZDOjl9bZNFbpbxcUrdC0AGkxflqYHkW6c5hrZdV-ZqDuzQBojWC7R1anoEA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crea un cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJzdWIiOiJlY2hvY2FubyIsImlhdCI6MTYxMTE4ODQzNSwiZXhwIjoxNjExMjAyNDM1fQ.cObfzTeE00mQJuOfOmRzKTYwMlnZDOjl9bZNFbpbxcUrdC0AGkxflqYHkW6c5hrZdV-ZqDuzQBojWC7R1anoEA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Waldir\",\n    \"lastname\": \"Saenz\",\n    \"dni\": \"12345678\",\n    \"phoneNumber\": \"985362514\",\n    \"email\": \"waldir.saenz@alianzalima.pe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
