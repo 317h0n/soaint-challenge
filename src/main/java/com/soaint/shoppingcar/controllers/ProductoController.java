@@ -56,7 +56,6 @@ public class ProductoController {
 			, @RequestParam(name = "page_size", defaultValue = "10", required = false) int pageSize
 			, @RequestParam(name = "order_by", defaultValue = "name", required = false) String orderBy){
 		MyListApiResponse<Producto> response;
-		logger.info("Obteniendo productos");
 		try {
 			page = page < 1 ? 1 : page;
 			pageSize = pageSize < 1 ? 1 : pageSize;
@@ -65,11 +64,21 @@ public class ProductoController {
 			response = new MyListApiResponse<Producto>();
 			response.setError(true);
 			logger.error("error", e);
-			response.setMessage("Internal error: ".concat(e.getMostSpecificCause().getMessage()));
+			response.setMessage("There was an error");
+			response.setBackendMessage("Internal error: ".concat(e.getMostSpecificCause().getMessage()));
 		}
 		if (!response.isError()) {
+			response.setCode(String.valueOf(HttpStatus.OK.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.OK.value()));
+			logger.info("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.OK); 
 		} else {
+			response.setCode(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			logger.error("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n"
+					+ "BackendMessage: " + response.getBackendMessage() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}	
@@ -87,11 +96,21 @@ public class ProductoController {
 			response = service.findById(id);
 		} catch (DataAccessException e) {
 			response.setError(true);
-			response.setMessage("Internal error: ".concat(e.getMostSpecificCause().getMessage()));
+			response.setMessage("There was an error");
+			response.setBackendMessage("Internal error: ".concat(e.getMostSpecificCause().getMessage()));
 		}
 		if (!response.isError()) {
+			response.setCode(String.valueOf(HttpStatus.OK.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.OK.value()));
+			logger.info("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.OK); 
 		} else {
+			response.setCode(String.valueOf(HttpStatus.NOT_FOUND.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.NOT_FOUND.value()));
+			logger.error("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n"
+					+ "BackendMessage: " + response.getBackendMessage() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND); 
 		}
 	}
@@ -115,8 +134,17 @@ public class ProductoController {
 			response = service.save(producto);			
 		}
 		if (!response.isError()) {
+			response.setCode(String.valueOf(HttpStatus.OK.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.OK.value()));
+			logger.info("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.OK); 
 		} else {
+			response.setCode(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			logger.error("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n"
+					+ "BackendMessage: " + response.getBackendMessage() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
@@ -147,8 +175,17 @@ public class ProductoController {
 			}
 		}
 		if (!response.isError()) {
+			response.setCode(String.valueOf(HttpStatus.OK.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.OK.value()));
+			logger.info("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.OK); 
 		} else {
+			response.setCode(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			logger.error("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n"
+					+ "BackendMessage: " + response.getBackendMessage() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
@@ -178,8 +215,17 @@ public class ProductoController {
 			response = service.save(productoDB);
 		}
 		if (!response.isError()) {
+			response.setCode(String.valueOf(HttpStatus.OK.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.OK.value()));
+			logger.info("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.OK); 
 		} else {
+			response.setCode(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			logger.error("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n"
+					+ "BackendMessage: " + response.getBackendMessage() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
@@ -197,15 +243,30 @@ public class ProductoController {
 			if (response.getContent() != null) {
 				Producto producto = response.getContent();
 				service.delete(producto.getId());
+				response.setCode(String.valueOf(HttpStatus.NO_CONTENT.value()));
+				response.setHttpStatus(String.valueOf(HttpStatus.NO_CONTENT.value()));
+				logger.info("Code: " + response.getCode() + "\n"
+						+ "HttpStatus: " + response.getHttpStatus() + "\n");
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);					
 			} else {
+				response.setCode(String.valueOf(HttpStatus.NOT_FOUND.value()));
+				response.setHttpStatus(String.valueOf(HttpStatus.NOT_FOUND.value()));
+				logger.error("Code: " + response.getCode() + "\n"
+						+ "HttpStatus: " + response.getHttpStatus() + "\n"
+						+ "BackendMessage: " + response.getBackendMessage() + "\n");
 				return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 			}
 		} catch (DataAccessException e) {
 			response = new MyApiResponse<Producto>();
 			response.setContent(null);
 			response.setError(true);
-			response.setMessage("Internal error: ".concat(e.getMostSpecificCause().getMessage()));
+			response.setMessage("There was an error");
+			response.setBackendMessage("Internal error: ".concat(e.getMostSpecificCause().getMessage()));
+			response.setCode(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			logger.error("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n"
+					+ "BackendMessage: " + response.getBackendMessage() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

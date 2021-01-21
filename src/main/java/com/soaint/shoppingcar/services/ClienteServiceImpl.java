@@ -41,26 +41,54 @@ public class ClienteServiceImpl implements IClienteService {
 			response.setPage(result.getNumber() + 1);
 			response.setContent(result.getContent());
 		} catch (Exception e) {
+			response.setError(true);
 			if (e.getMessage().contains("could not resolve property")) {
 				response.setMessage("Sort value not exists.");
 			} else {
-				response.setMessage(e.getMessage());
+				response.setMessage("There was an error.");
 			}
+			response.setBackendMessage(e.getMessage());
 		}
 		return response;
 	}
 
 	@Override
 	public MyApiResponse<Cliente> save(Cliente entity) {
-		Cliente cliente = dao.save(entity);
 		MyApiResponse<Cliente> response = new MyApiResponse<>();
-		response.setContent(cliente);
-		response.setMessage("Cliente " + entity.getFirstname() + " " + entity.getLastname() + " was saved successfully.");
-		response.setError(false);
-		if (cliente == null) {
+		try {
+			Cliente cliente = dao.save(entity);
+			response.setContent(cliente);
+			response.setMessage("Cliente " + entity.getFirstname() + " " + entity.getLastname() + " was saved successfully.");
+			response.setError(false);
+			if (cliente == null) {
+				response.setMessage("There was a problem trying to save the cliente " + entity.getFirstname() + " " + entity.getLastname());
+				response.setError(true);
+			}
+		} catch (Exception e) {				
 			response.setMessage("There was a problem trying to save the cliente " + entity.getFirstname() + " " + entity.getLastname());
 			response.setError(true);
+			response.setBackendMessage(e.getMessage());
 		}
+		return response;
+	}
+
+	@Override
+	public MyApiResponse<Cliente> findById(Long id) {
+		MyApiResponse<Cliente> response = new MyApiResponse<>();
+		try {
+			Cliente cliente = dao.findById(id).orElse(null);
+			response.setContent(cliente);
+			response.setMessage(null);
+			response.setError(false);
+			if (cliente == null) {
+				response.setMessage("Cliente " + id + " not found");
+				response.setError(true);
+			}	
+		} catch (Exception e) {
+			response.setMessage("There was an error");
+			response.setError(true);
+			response.setBackendMessage(e.getMessage());
+		}		
 		return response;
 	}
 

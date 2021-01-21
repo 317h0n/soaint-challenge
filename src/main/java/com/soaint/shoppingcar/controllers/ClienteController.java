@@ -52,7 +52,6 @@ public class ClienteController {
 			, @RequestParam(name = "page_size", defaultValue = "10", required = false) int pageSize
 			, @RequestParam(name = "order_by", defaultValue = "lastname", required = false) String orderBy){
 		MyListApiResponse<Cliente> response;
-		logger.info("Obteniendo clientes");
 		try {
 			page = page < 1 ? 1 : page;
 			pageSize = pageSize < 1 ? 1 : pageSize;
@@ -61,11 +60,21 @@ public class ClienteController {
 			response = new MyListApiResponse<Cliente>();
 			response.setError(true);
 			logger.error("error", e);
-			response.setMessage("Internal error: ".concat(e.getMostSpecificCause().getMessage()));
+			response.setMessage("There was an error.");
+			response.setBackendMessage("Internal error: ".concat(e.getMostSpecificCause().getMessage()));
 		}
 		if (!response.isError()) {
+			response.setCode(String.valueOf(HttpStatus.OK.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.OK.value()));
+			logger.info("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.OK); 
 		} else {
+			response.setCode(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			logger.error("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n"
+					+ "BackendMessage: " + response.getBackendMessage() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}		
@@ -89,8 +98,17 @@ public class ClienteController {
 			response = service.save(cliente);			
 		}
 		if (!response.isError()) {
+			response.setCode(String.valueOf(HttpStatus.OK.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.OK.value()));
+			logger.info("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.OK); 
 		} else {
+			response.setCode(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			response.setHttpStatus(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+			logger.error("Code: " + response.getCode() + "\n"
+					+ "HttpStatus: " + response.getHttpStatus() + "\n"
+					+ "BackendMessage: " + response.getBackendMessage() + "\n");
 			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}	

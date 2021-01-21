@@ -46,13 +46,15 @@ public class ProductoServiceImpl implements IProductoService {
 			response.setPage(result.getNumber() + 1);
 			response.setContent(result.getContent());
 		} catch (Exception e) {
+			response.setError(true);
 			if (e.getMessage().contains("could not resolve property")) {
 				log.error("Sort value not exists.");
 				response.setMessage("Sort value not exists.");
 			} else {
-				log.error("No sort problem.");
-				response.setMessage(e.getMessage());
+				log.error("Sort problem.");
+				response.setMessage("Sort problem.");
 			}
+			response.setBackendMessage(e.getMessage());
 		}
 		return response;
 	}
@@ -74,14 +76,20 @@ public class ProductoServiceImpl implements IProductoService {
 	@Override
 	@Transactional
 	public MyApiResponse<Producto> save(Producto entity) {
-		Producto producto = dao.save(entity);
 		MyApiResponse<Producto> response = new MyApiResponse<>();
-		response.setContent(producto);
-		response.setMessage("Producto " + entity.getName() + " was saved successfully.");
-		response.setError(false);
-		if (producto == null) {
-			response.setMessage("There was a problem trying to save the producto " + entity.getName());
-			response.setError(true);
+		try {
+			Producto producto = dao.save(entity);
+			response.setContent(producto);
+			response.setMessage("Producto " + entity.getName() + " was saved successfully.");
+			response.setError(false);
+			if (producto == null) {
+				response.setMessage("There was a problem trying to save the producto " + entity.getName());
+				response.setError(true);
+			}
+		} catch (Exception e) {
+			response.setBackendMessage(e.getMessage());	
+			response.setMessage("There was an error");
+			response.setError(true);		
 		}
 		return response;
 	}
