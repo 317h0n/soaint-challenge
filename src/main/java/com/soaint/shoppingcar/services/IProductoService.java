@@ -8,6 +8,6 @@ public interface IProductoService {
 
 	MyListApiResponse<Producto> findAll(int page, int pageSize, String orderBy);
 	MyApiResponse<Producto> findById(Long id);
-	MyApiResponse<Producto> save(Producto room);
+	MyApiResponse<Producto> save(Producto producto);
 	void delete(Long id);
 }

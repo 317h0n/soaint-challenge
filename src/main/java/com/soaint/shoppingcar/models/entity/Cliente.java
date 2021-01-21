@@ -19,29 +19,38 @@ import lombok.Setter;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-@Table(name = "productos")
-@ApiModel("Model Producto")
+@Table(name = "clientes")
+@ApiModel("Model Cliente")
 @Getter 
 @Setter
-public class Producto implements Serializable {
+public class Cliente implements Serializable {
 
 	@Getter(value = AccessLevel.NONE)
 	@Setter(value = AccessLevel.NONE)
-	private static final long serialVersionUID = -3001289127527785081L;
+	private static final long serialVersionUID = -2529108618569827764L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ApiModelProperty(value = "Id of the model", required = true)
 	private Long id;
 
-	@ApiModelProperty(value = "Name for the producto", required = true)
+	@ApiModelProperty(value = "Firstname", required = true)
 	@Column(length = 50, nullable = false)
-	private String name;
+	private String firstname;
 
-	@ApiModelProperty(value = "Price for the producto", required = true)
-	@Column(nullable = false)
-	private Double price;
+	@ApiModelProperty(value = "Lastname", required = true)
+	@Column(length = 50, nullable = false)
+	private String lastname;
 
-	public Producto() {
-	}
+	@ApiModelProperty(value = "DNI", required = true)
+	@Column(length = 8, nullable = false)
+	private String dni;
+
+	@ApiModelProperty(value = "PhoneNumber", required = true)
+	@Column(length = 15, nullable = false)
+	private String phoneNumber;
+
+	@ApiModelProperty(value = "Email", required = true)
+	@Column(length = 100, nullable = false)
+	private String email;
 }
