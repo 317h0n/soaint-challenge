@@ -21,20 +21,21 @@ Necesistas tener instalado JDK 11, y tener configurado el plugin de Lombok en tu
 - Tienes que clonar el repositorio y abrirlo en tu IDE de preferencia.
 - Necesitarás Postman u otra herramienta para testear Apis, hay una [collection de Postman](https://github.com/317h0n/soaint-challenge/blob/main/SOAINT%20-%20TEST.postman_collection.json) en el repositorio para que puedas testear la API.
 
+### Doc
+
+Se utilizó la libreria de Swagger para llevar acabo la documentación de la API, para poder verla haga [click aquí](http://localhost:8090/swagger-ui.html) cuando el proyecto este levantado.
+
 ## Testing
 
 Puedes usar la [collection de Postman](https://github.com/317h0n/soaint-challenge/blob/main/SOAINT%20-%20TEST.postman_collection.json).
 
 ## Built With
 
-* [Spring Boot](https://spring.io/projects/spring-boot) - The java web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
+* [Spring Boot](https://spring.io/projects/spring-boot) - The java web framework used.
+* [Maven](https://maven.apache.org/) - Dependency Management.
 * [Lombok](https://projectlombok.org/) - Java library that automatically plugs into your editor and build tools, spicing up your java.
-* [H2](https://www.h2database.com/html/main.html) - In-memory database
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [H2](https://www.h2database.com/html/main.html) - In-memory database.
+* [Swagger](https://swagger.io/) - A professional toolset that can help you design and document your APIs.
 
 ## Authors
 
